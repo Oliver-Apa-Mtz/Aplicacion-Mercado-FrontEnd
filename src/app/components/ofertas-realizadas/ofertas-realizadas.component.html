@@ -1,0 +1,54 @@
+<section *ngIf="identity" class="animated fadeIn favoritos-contenedor">
+  <div *ngFor="let publicacion of ofertas">
+    <div class="publicacion completo">
+      <h2 class="blue-grey-text text-darken-4">{{publicacion[0].titulo}}</h2>
+      <div class="img-vendedor">
+        <p class="truncate nombre">{{publicacion[0].usuario.nombre}} {{publicacion[0].usuario.apellido}}</p>
+        <ul>
+          <li>
+            <h5>{{publicacion[0].usuario.ventas.length}}</h5>
+            <p>Ventas</p>
+          </li>
+          <li>
+            <h5>{{publicacion[0].usuario.compras.length}}</h5>
+            <p>Compras</p>
+          </li>
+        </ul>
+        <a class="blue-grey-text text-darken-4" [routerLink]="['/publicaciones/',publicacion[0].usuario._id]"><p class="public"><i class="material-icons">local_grocery_store</i>Publicaciones</p></a>
+        <img src="{{url + 'obtener-img-usuario/' + publicacion[0].usuario.imagen}}" alt="">
+      </div>
+      <div class="row">
+        <div class="col l6 m6 s12 back-white">
+          <h3 class="txt-categoria">{{publicacion[0].categoriaPrincipal}}</h3>
+          <h6 class="blue-grey-text text-darken-4 txt-estado">Articulo {{publicacion[0].estado}}</h6>
+          <h4 class="blue-grey-text text-darken-4 txt-precio">Precio<span>$ {{publicacion[0].precio}}</span></h4>
+          <h6 class="txt-descripcion blue-grey-text text-darken-4">{{publicacion[0].descripcion}}</h6>
+          <h5 class="blue-grey-text text-darken-4">{{publicacion[0].fechaRegistro | date:'dd MMMM y'}}</h5>
+        </div>
+        <div class="col l6 m6 s12 back-grey">
+          <figure class="contenedor-img" id="{{publicacion[0]._id}}">
+            <img src="{{url + 'obtener-img-publi/' + publicacion[0].imgSec}}" alt="">
+            <img src="{{url + 'obtener-img-publi/' + publicacion[0].imgPri}}" alt="">
+            <img src="{{url + 'obtener-img-publi/' + publicacion[0].imgTer}}" alt="">
+          </figure>
+          <div class="puntos">
+            <p id="{{publicacion[0]._id}}1" (click)="cambioImg(publicacion[0]._id, '1')"><i></i></p>
+            <p id="{{publicacion[0]._id}}2" (click)="cambioImg(publicacion[0]._id, '2')"><i></i></p>
+            <p id="{{publicacion[0]._id}}3" (click)="cambioImg(publicacion[0]._id, '3')"><i></i></p>
+          </div>
+        </div>
+      </div>
+      <button [routerLink]="['/publicacion/',publicacion[0]._id]" class="botones">Detalles<i class="material-icons">arrow_drop_up</i></button>
+    </div>
+  </div>
+  <div *ngIf="vacio" class="vacio">
+    <div class="row">
+      <div class="col s6 valign-wrapper">
+        <h1 class="center-align">{{mensaje}}</h1>
+      </div>
+      <div class="col s6">
+         <img class="responsive-img" src="../assets/img/bag.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>

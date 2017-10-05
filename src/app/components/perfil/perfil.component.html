@@ -1,0 +1,16 @@
+<section class="col l12 m12 s12 animated fadeIn fast">
+  <h1 class="blue-grey-text text-darken-4">{{identity.nombre}} {{identity.apellido}}</h1>
+  <h5 class="fecha">Activo desde el {{identity.fechaRegistro | date}}</h5>
+  <h5 class="correo">{{identity.email}}</h5>
+  <img class="z-depth-2" src="{{url + 'obtener-img-usuario/' + identity.imagen}}" alt="">
+  <ul>
+    <li [routerLink]="['/publicaciones',identity._id]">Publicaciones</li>
+    <li [routerLink]="['/ventas']">Ventas</li>
+    <li [routerLink]="['/ofertas-recibidas']"><span *ngIf="ofertas" class="new badge">{{ofertas}}</span>Ofertas Recibidas</li>
+    <li [routerLink]="['/ofertas-realizadas']">Ofertas Realizadas</li>
+    <li [routerLink]="['/compras']">Compras</li>
+    <li [routerLink]="['/favoritos']">Favoritos</li>
+    <li [routerLink]="['/datos']">Editar Perfil</li>
+  </ul>
+  <a class="btn-floating btn-large waves-effect waves-light red" (click)="logout()"><i class="material-icons">power_settings_new</i></a>
+</section>

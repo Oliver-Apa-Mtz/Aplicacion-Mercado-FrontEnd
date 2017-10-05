@@ -1,0 +1,166 @@
+<section *ngIf="identity">
+    <header class="col l12 m12 s12 header">
+        <div class="row">
+            <div class="col l5 m5">
+                <form class="">
+                    <div class="input-field buscar">
+                        <input id="search" type="search" required placeholder="Que articulo deseas buscar..." #buscarPubli (keyup.enter)="buscar(buscarPubli.value)">
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+            <div class="col s2 title">
+                <a [routerLink]="['/publicaciones']" class="blue-grey-text text-darken-4">{{title}}</a>
+            </div>
+            <div class="col l4 push-l1 m5 s4">
+                <div class="row">
+                  <a [routerLink]="['/ayuda']"><div class="col s4 header-nav diagonal">
+                    <a class="light-blue-text text-accent-3"><i class="material-icons">help</i>Ayuda</a>
+                  </div></a>
+                  <a [routerLink]="['/guardar-publicacion']"><div class="col s4 header-nav diagonal">
+                    <a class="blue-grey-text text-darken-4"><i class="material-icons">near_me</i>Vender</a>
+                  </div></a>
+                  <a [routerLink]="['/perfil']"><div class="col s4 header-nav">
+                    <a class="blue-grey-text text-darken-4 left-align truncate">{{identity.nombre}}<span *ngIf="pendientes" class="new badge blue-grey darken-4" data-badge-caption="Oferta">{{pendientes}}</span></a>
+                    <img class="circle responsive-img img-perf" src="{{url + 'obtener-img-usuario/' + identity.imagen}}" alt="">
+                  </div></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="categorias">
+        <div (mouseover)="mostrarSubCate('caballeros')" (mouseleave)="ocultarSubCate('caballeros')">
+            <a [routerLink]="['/publicaciones-categoria/Caballero']">Caballeros</a>
+            <ul id="caballeros" class="">
+                <li *ngFor="let caba of categoriasCaba" [routerLink]="['/publicaciones-subcategoria/',caba]">{{caba}}</li>
+            </ul>
+        </div>
+        <div (mouseover)="mostrarSubCate('dama')" (mouseleave)="ocultarSubCate('dama')">
+            <a [routerLink]="['/publicaciones-categoria/Dama']">Damas</a>
+            <ul id="dama" class="">
+                <li *ngFor="let dama of categoriasDama" [routerLink]="['/publicaciones-subcategoria/',dama]">{{dama}}</li>
+            </ul>
+        </div>
+        <div (mouseover)="mostrarSubCate('tecno')" (mouseleave)="ocultarSubCate('tecno')">
+            <a [routerLink]="['/publicaciones-categoria/Tecnologia']">Tecnologia</a>
+            <ul id="tecno" class="">
+                <li *ngFor="let tecn of categoriasTecn" [routerLink]="['/publicaciones-subcategoria/',tecn]">{{tecn}}</li>
+            </ul>
+        </div>
+        <div (mouseover)="mostrarSubCate('ali')" (mouseleave)="ocultarSubCate('ali')">
+            <a [routerLink]="['/publicaciones-categoria/Alimentos-Bebidas']">Alimentos/Bebidas</a>
+            <ul id="ali" class="">
+                <li *ngFor="let ali of categoriasAli" [routerLink]="['/publicaciones-subcategoria/',ali]">{{ali}}</li>
+            </ul>
+        </div>
+        <div (mouseover)="mostrarSubCate('hoga')" (mouseleave)="ocultarSubCate('hoga')">
+            <a [routerLink]="['/publicaciones-categoria/Hogar']">Hogar</a>
+            <ul id="hoga" class="">
+                <li *ngFor="let hoga of categoriasHoga" [routerLink]="['/publicaciones-subcategoria/',hoga]">{{hoga}}</li>
+            </ul>
+        </div>
+        <div (mouseover)="mostrarSubCate('serv')" (mouseleave)="ocultarSubCate('serv')">
+            <a [routerLink]="['/publicaciones-categoria/Servicios']">Servicios</a>
+            <ul id="serv" class="">
+                <li *ngFor="let serv of categoriasServ" [routerLink]="['/publicaciones-subcategoria/',serv]">{{serv}}</li>
+            </ul>
+        </div>
+        <div>
+            <a [routerLink]="['/publicaciones-categoria/Otros']">Otros</a>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</section>
+
+<section *ngIf="!identity" class="animated fadeIn">
+  <header class="header-no">
+    <div class="row">
+      <div class="col l4 m3 s2 hide-on-small-only">
+        <h1 class="blue-grey-text text-darken-4"><i class="material-icons">store_mall_directory</i>Mall-E</h1>
+      </div>
+      <div class="col l8 m9 s12">
+        <div class="row">
+  				<form #formLog="ngForm" (ngSubmit)="onSubmit()">
+            <div class="col l4 m4 s4">
+              <div class="input-field">
+                <label for="email-i">Correo electronico</label>
+                <input type="email" id="email-i" [(ngModel)]="usuario.email" #email="ngModel" name="email" class="validate" required>
+              </div>
+            </div>
+            <div class="col l4 m4 s4">
+              <div class="input-field">
+                <label for="password-i">Contraseña</label>
+                <input type="password" id="password-i" [(ngModel)]="usuario.password" #password="ngModel" name="password" class="validate" required>
+              </div>
+            </div>
+            <div class="col l4 m4 s4">
+              <button [disabled]="!formLog.form.valid" type="submit" class="col l6 push-l3 m8 push-m2 s12 botones">Entrar<i class="material-icons">arrow_drop_up</i></button>
+            </div>
+  				</form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="registros col l12 m12 s12">
+    <div class="row">
+    	<div class="col l8 m7 cel hide-on-small-only">
+            <img src="../assets/img/au.jpg" alt="">
+            <h3 class="frase">Compra y vende articulos nuevos o que ya no uses</h3>
+    	</div>
+        <div class="col l4 m5 s12">
+			<div class="">
+                <h2 class="center-align blue-grey-text text-darken-4">Registrate</h2>
+                <form #formReg="ngForm" (ngSubmit)="onSubmitRegistro()" class="container">
+                    <div class="input-field">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" #nombre="ngModel" name="nombre" [(ngModel)]="usuarioRegistro.nombre" class="validate" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="email">Correo electronico</label>
+                        <input onclick="Materialize.toast('Introduce un Email que no haya sido utilizado', 3000)" type="email" id="email" #email="ngModel" name="email" [(ngModel)]="usuarioRegistro.email" class="validate" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="password">Contraseña</label>
+                        <input onclick="Materialize.toast('Minimo 8 caracteres entre Mayusculas, minusculas y numeros', 3000)" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" id="password" #password="ngModel" name="password" [(ngModel)]="usuarioRegistro.password" class="validate" required>
+                    </div>
+                    <button [disabled]="!formReg.form.valid" type="submit" class="col l6 push-l3 m8 push-m2 s8 push-s2 botones">Registrarse<i class="material-icons">arrow_drop_up</i></button>
+                </form>
+			</div>
+        </div>
+    </div>
+  </div>
+  <div *ngIf="errorMessage">
+    <div class="card-panel white center-align z-depth-5 errores">
+        <span class="dark-text">{{errorMessage}}</span>
+        <div>
+            <i class="material-icons dark-text large">sentiment_very_dissatisfied</i>
+        </div>
+    </div>
+  </div>
+  <div class="errores" *ngIf="errorAlerta">
+    <div class="card-panel blue-grey darken-4 center-align">
+        <span class="white-text">{{errorAlerta}}</span>
+        <div>
+            <i class="material-icons white-text large">sentiment_very_satisfied</i>
+        </div>
+    </div>
+  </div>
+</section>
+
+<div class="carga" *ngIf="carga">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-green-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

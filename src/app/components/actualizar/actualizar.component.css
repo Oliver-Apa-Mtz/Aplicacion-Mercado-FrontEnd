@@ -1,0 +1,55 @@
+.actualizar{
+    position: relative;
+    height: auto;
+    min-height: 80vh;
+    margin-top: 8vh;
+    padding-top: 50px;
+    overflow: hidden;
+    background: linear-gradient(90deg, white 50%, #263238 50%);
+}
+.actualizar .tex{
+    position: absolute;
+    right: 20px;
+    text-align: right;
+}
+.tex h2{
+    font-size: 6em;
+    color: rgba(0,0,0,.1);
+}
+.campos{
+    margin-top: 80px;
+}
+img{
+  position: absolute;
+  width: 25%;
+  left: 37.5%;
+  top: 20%;
+  height: auto;
+  border-radius: 5px;
+}
+img i{
+    font-size: 20em;
+    border-radius: 50%;
+}
+.btn-img-actu{
+    position: absolute;
+    left: calc(50% - 28px);
+    bottom: 75px;
+}
+.label-img{
+    width: 56px;
+    height: 56px;
+    top: 0;
+    cursor: pointer;
+}
+.label-img i{
+  font-size: 2em;
+}
+.btn-img{
+    display: none;
+}
+.btn-dat{
+    width: 200px;
+    margin-left: calc(50% - 100px);
+    margin-top: 50px;
+}

@@ -1,0 +1,126 @@
+<h3 class="add-title">Publicación</h3>
+<h3 class="add-title">Nueva</h3>
+<section class="row animated fadeInd">
+  <div class="container">
+    <form #formPubli="ngForm" (ngSubmit)="onSubmit()">
+      <h3 class="text-subir" *ngIf="isEdit">Ahora solo sube las imagenes del articulo</h3>
+      <div *ngIf="!isEdit" class="row">
+        <div class="col l6">
+          <div class="input-field">
+            <label for="titulo">Titulo</label>
+            <input type="text" id="titulo" #titulo="ngModel" [(ngModel)]="publicacion.titulo" name="titulo" class="validate" required>
+          </div>
+          <div class="input-field">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" #precio="ngModel" [(ngModel)]="publicacion.precio" name="precio" class="validate" required>
+          </div>
+          <div class="input-field">
+            <label for="existencias">Existencias</label>
+            <input type="number" id="existencias" #existencias="ngModel" [(ngModel)]="publicacion.existencias" name="existencias" class="validate" required>
+          </div>
+          <div class="input-field">
+            <select #categoriaPrincipal="ngModel" [(ngModel)]="publicacion.categoriaPrincipal" id="categoriaPrincipal" name="categoriaPrincipal" materialize="material_select" [materializeSelectOptions]="categorias">
+              <option value="" disabled selected>Selecciona la categoria principal</option>
+              <option *ngFor="let option of categorias" [value]="option">{{option}}</option>
+            </select>
+          </div>
+          <div class="input-field" *ngIf="publicacion.categoriaPrincipal == 'Caballero'">
+            <select #categoriaSecundaria="ngModel" [(ngModel)]="publicacion.categoriaSecundaria" id="categoriaSecundaria" name="categoriaSecundaria" materialize="material_select" [materializeSelectOptions]="categoriasSecu">
+              <option value="" disabled selected>Selecciona una subcategoria</option>
+              <option *ngFor="let option of categoriasCaba" [value]="option">{{option}}</option>
+            </select>
+          </div>
+          <div class="input-field" *ngIf="publicacion.categoriaPrincipal == 'Dama'">
+            <select #categoriaSecundaria="ngModel" [(ngModel)]="publicacion.categoriaSecundaria" id="categoriaSecundaria" name="categoriaSecundaria" materialize="material_select" [materializeSelectOptions]="categoriasSecu">
+              <option value="" disabled selected>Selecciona una subcategoria</option>
+              <option *ngFor="let option of categoriasDama" [value]="option">{{option}}</option>
+            </select>
+          </div>
+          <div class="input-field" *ngIf="publicacion.categoriaPrincipal == 'Alimentos/Bebidas'">
+            <select #categoriaSecundaria="ngModel" [(ngModel)]="publicacion.categoriaSecundaria" id="categoriaSecundaria" name="categoriaSecundaria" materialize="material_select" [materializeSelectOptions]="categoriasSecu">
+              <option value="" disabled selected>Selecciona una subcategoria</option>
+              <option *ngFor="let option of categoriasAli" [value]="option">{{option}}</option>
+            </select>
+          </div>
+          <div class="input-field" *ngIf="publicacion.categoriaPrincipal == 'Tecnologia'">
+            <select #categoriaSecundaria="ngModel" [(ngModel)]="publicacion.categoriaSecundaria" id="categoriaSecundaria" name="categoriaSecundaria" materialize="material_select" [materializeSelectOptions]="categoriasSecu">
+              <option value="" disabled selected>Selecciona una subcategoria</option>
+              <option *ngFor="let option of categoriasTecn" [value]="option">{{option}}</option>
+            </select>
+          </div>
+          <div class="input-field" *ngIf="publicacion.categoriaPrincipal == 'Hogar'">
+            <select #categoriaSecundaria="ngModel" [(ngModel)]="publicacion.categoriaSecundaria" id="categoriaSecundaria" name="categoriaSecundaria" materialize="material_select" [materializeSelectOptions]="categoriasSecu">
+              <option value="" disabled selected>Selecciona una subcategoria</option>
+              <option *ngFor="let option of categoriasHoga" [value]="option">{{option}}</option>
+            </select>
+          </div>
+          <div class="input-field" *ngIf="publicacion.categoriaPrincipal == 'Servicios'">
+            <select #categoriaSecundaria="ngModel" [(ngModel)]="publicacion.categoriaSecundaria" id="categoriaSecundaria" name="categoriaSecundaria" materialize="material_select" [materializeSelectOptions]="categoriasSecu">
+              <option value="" disabled selected>Selecciona una subcategoria</option>
+              <option *ngFor="let option of categoriasServ" [value]="option">{{option}}</option>
+            </select>
+          </div>
+          <div class="input-field">
+            <label for="descripcion">Descripcion</label>
+            <textarea id="descripcion" #descripcion="ngModel" [(ngModel)]="publicacion.descripcion" name="descripcion" class="materialize-textarea validate" required></textarea>
+          </div>
+          <div class="input-field" *ngIf="!isEdit">
+            <div class="switch">
+              <label class="col s6 push-s3">
+                Usado
+                <input type="checkbox" #estado="ngModel" id="estado" name="estado" [(ngModel)]="valEstado">
+                <span class="lever"></span>
+                Nuevo
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col l6">
+					<div class="row">
+						<div class="col s10 push-s1 z-depth-1 mapa">
+							<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+								<agm-marker (dragEnd)="colocarMarcador($event)" [latitude]="lat" [longitude]="lng" [markerDraggable]="true"></agm-marker>
+							</agm-map>
+						</div>
+					</div>
+      	</div>
+    	</div>
+    	<div *ngIf="isEdit" class="row fotos-btn">
+      	<div class="col s6 push-s3">
+        	<div class="row">
+          	<div class="col s4">
+							<div class="input-field">
+								<label for="fileuno" class="label-img btn-floating pulse btn-large waves-effect waves-light blue accent-3"><i class="material-icons">photo</i></label>
+								<input class="btn-img" type="file" id="fileuno" (change)="priChangeEvent($event)">
+							</div>
+						</div>
+						<div class="col s4">
+							<div class="input-field">
+								<label for="filedos" class="label-img btn-floating pulse btn-large waves-effect waves-light blue accent-3"><i class="material-icons">photo</i></label>
+								<input class="btn-img" type="file" id="filedos" (change)="secChangeEvent($event)">
+							</div>
+						</div>
+						<div class="col s4">
+							<div class="input-field">
+								<label for="filetres" class="label-img btn-floating pulse btn-large waves-effect waves-light blue accent-3"><i class="material-icons">photo</i></label>
+								<input class="btn-img" type="file" id="filetres" (change)="terChangeEvent($event)">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sugere col l6 push-l3">
+				<div class="card  blue-grey darken-4" *ngIf="!isEdit">
+					<div class="card-content white-text">
+						<span class="card-title">Aviso</span>
+						<p>Rellena todos los campos para poder publicar el articulo</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s12">
+				<button *ngIf="!isEdit" [disabled]="!formPubli.form.valid" type="submit" class="botones col s4 push-s4  btn-publi">Continuar<i class="material-icons">arrow_drop_up</i></button>
+				<button *ngIf="isEdit" [disabled]="!formPubli.form.valid" type="submit" class="botones col s4 push-s4  btn-publi">Publicar<i class="material-icons">arrow_drop_up</i></button>
+			</div>
+		</form>
+	</div>
+</section>

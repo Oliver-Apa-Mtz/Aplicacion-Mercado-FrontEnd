@@ -1,0 +1,212 @@
+section{
+  min-height: 100vh;
+}
+.publicacion{
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  position: relative;
+  margin-top: 20vh;
+}
+h2{
+  font-weight: 450;
+  width: 30vw;
+  margin-left: 50px;
+  margin-top: 100px;
+}
+.publicacion h2:nth-child(1){
+  padding-top: 20px;
+}
+h6{
+  width: 30vw;
+  margin-left: 50px;
+  position: relative;
+}
+h6::after{
+  position: absolute;
+  content: "";
+  width: 3px;
+  height: 80px;
+  background-color: #263238;
+  bottom: -90px;
+  left: 3px;
+}
+span{
+  position: absolute;
+  left: 30%;
+  top: 40px;
+}
+span i{
+  font-size: 3em;
+  cursor: pointer;
+}
+.favorito-activo{
+  color: red;
+}
+.favorito-inactivo{
+  color: #e0e0e0;
+}
+.rebote{
+  animation: rebote 1s linear;
+}
+@keyframes rebote{
+  50%{
+    transform: scale(1.3);
+  }
+}
+.datos-vendedor{
+  position: absolute;
+  width: 30%;
+  height: 100px;
+  top: 450px;
+  left: 56px;
+  border-bottom: 3px solid #263238;
+}
+.datos-vendedor img{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 10px;
+  top: 10px;
+  border-radius: 50%;
+}
+.datos-vendedor p{
+  margin-left: 100px;
+  margin-top: 20px;
+}
+.contenedor-img{
+  position: absolute;
+  left: calc(100vw - 820px);
+  top: 0;
+  width: 770px;
+  height: 700px;
+  overflow: hidden;
+}
+.carousel .carousel-item{
+  width: 670px;
+  height: 670px;
+  position: absolute;
+  top: -50px;
+}
+.carousel{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.mapa{
+  width: 100%;
+  margin-top: 0px;
+  position: relative;
+}
+.margen-arriba{
+  margin-top: 350px;
+}
+agm-map {
+  height: 500px;
+}
+strong{
+  margin-left: 110px;
+}
+.punto-entrega{
+  margin-top: 25px;
+}
+.img-vendedor{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  border-radius: 50%;
+  right: 20px;
+  top: 0;
+}
+.ofertar{
+  position: absolute;
+  width: 300px;
+  left: calc(50% - 150px);
+  margin-top: 265px;
+}
+.ofertar:hover{
+  box-shadow: 0px 0px 15px rgba(0,0,0,.2);
+}
+.btn-compra{
+  position: relative;
+  width: 70%;
+  margin-left: 15%;
+  height: 200px;
+  margin-top: 300px;
+}
+.btn-compra img{
+  cursor: pointer;
+}
+.btn-compra img:hover{
+  animation: rebote .4s;
+}
+@keyframes rebote{
+  50%{
+    transform: scale(1.3);
+  }
+}
+.confirmacion{
+  display: none;
+  position: fixed;
+  z-index: 999;
+  width: 900px;
+  min-height: 300px;
+  height: auto;
+  top: 15vh;
+  left: calc(50% - 450px);
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 10px 100px rgba(0,0,0,.6);
+}
+.confirmacion div{
+  position: relative;
+  height: 100%;
+}
+.confirmacion img{
+  position: absolute;
+  bottom: 1;
+}
+@media screen and (max-width: 1200px){
+  .contenedor-img{
+    left: calc(100vw - 620px);
+    width: 600px;
+    height: 600px;
+  }
+  .carousel .carousel-item{
+    width: 500px;
+    height: 500px;
+  }
+}
+@media screen and (max-width: 600px){
+  .contenedor-img{
+    position: relative;
+    width: 100vw;
+    height: 800px;
+    overflow: hidden;
+    margin-top: -80px;
+    margin-bottom: -180px;
+  }
+  .carousel .carousel-item{
+    width: 80%;
+    height: auto;
+    position: absolute;
+  }
+  h2{
+    width: 100vw;
+  }
+  h6{
+    width: 80vw;
+  }
+  h6::after{
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 80px;
+    background-color: #263238;
+    bottom: -90px;
+    left: 3px;
+  }
+  .datos-vendedor{
+    width: calc(100vw - 56px);
+  }
+}

@@ -1,0 +1,35 @@
+<div class="col l12 m12 s12 actualizar animated fadeIn">
+  <div class="row">
+		<div class="tex">
+			<h2>Actualizar</h2>
+			<h2>Datos</h2>
+		</div>
+    <form class="col l12">
+			<div class="campos col l3 push-l1">
+				<div class="input-field">
+					<label [ngClass]="{'active': identity}" for="nombre">Nombre</label>
+					<input type="text" id="nombre" #nombre="ngModel" name="nombre" [(ngModel)]="usuario.nombre" class="validate" required>
+				</div>
+				<div class="input-field">
+					<label [ngClass]="{'active': identity}" for="apellido">Apellidos</label>
+					<input type="text" id="apellido" #apellido="ngModel" name="apellido" [(ngModel)]="usuario.apellido" class="validate" required>
+				</div>
+				<div class="input-field">
+					<label [ngClass]="{'active': identity}" for="telefono">Telefono</label>
+					<input type="tel" pattern="[0-9]{10}" id="telefono" #telefono="ngModel" name="telefono" [(ngModel)]="usuario.telefono" class="validate" required>
+				</div>
+				<button (click)="onSubmit()" type="submit" class="botones btn-dat">Guardar Datos<i class="material-icons">arrow_drop_up</i></button>
+			</div>
+			<div *ngIf="usuario.imagen && usuario.imagen != 'null'">
+        <img class="z-depth-2" src="{{url + 'obtener-img-usuario/' + usuario.imagen}}" alt="">
+			</div>
+			<div *ngIf="usuario.imagen == 'null'" class="img-actua z-depth-4">
+				<i class="material-icons blue-grey-text text-darken-4 white">mood</i>
+			</div>
+			<div class="input-field btn-img-actu">
+        <label for="file" class="label-img btn-floating btn-large waves-effect waves-light green accent-4"><i class="material-icons">add_a_photo</i></label>
+        <input class="btn-img" type="file" id="file" (change)="fileChangeEvent($event)">
+      </div>
+    </form>
+  </div>
+</div>

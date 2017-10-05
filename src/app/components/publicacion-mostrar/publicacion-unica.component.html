@@ -1,0 +1,78 @@
+<section *ngIf="identity" (click)="cerrarModal()">
+  <div *ngFor="let publicacion of publicaciones">
+    <div class="publicacion animated fadeIn">
+      <h2>$ {{publicacion.precio}}</h2>
+      <h6>{{publicacion.estado}}</h6>
+      <h2>{{publicacion.titulo}}</h2>
+      <h6>{{publicacion.descripcion}}</h6>
+      <span><i [ngClass]="{'favorito-activo': activo, 'favorito-inactivo': !activo}" class="material-icons" (click)="agregarFavorito(publicacion._id)">favorite</i></span>
+      <div class="datos-vendedor">
+        <img src="{{url + 'obtener-img-usuario/' + publicacion.usuario.imagen}}" alt="">
+        <p>{{publicacion.usuario.nombre}} {{publicacion.usuario.apellido}}</p>
+        <p>{{publicacion.usuario.email}}</p>
+      </div>
+      <div class="contenedor-img">
+        <div id="carousel" class="carousel" [ngClass]="{ 'initialized': showInitialized }" materialize="carousel" [materializeActions]="actions">
+          <div class="carousel-item">
+            <img src="{{url + 'obtener-img-publi/' + publicacion.imgPri}}">
+          </div>
+          <div class="carousel-item">
+            <img src="{{url + 'obtener-img-publi/' + publicacion.imgSec}}">
+          </div>
+          <div class="carousel-item">
+            <img src="{{url + 'obtener-img-publi/' + publicacion.imgTer}}">
+          </div>
+        </div>
+      </div>
+
+      <button *ngIf="!autor && !ofertado" class="botones ofertar" (click)="ofertar(publicacion._id, usuario._id)">Ofertar<i class="material-icons">arrow_drop_up</i></button>
+
+      <div *ngIf="ofertado" class="btn-compra">
+        <div class="row">
+          <div class="col s2">
+            <img (click)="compraCancelada(publicacion._id, usuario._id)" class="responsive-img" src="../assets/img/no.png" alt="">
+          </div>
+          <div class="col s8">
+            <h1 class="center-align">Terminastes por adquirir el articulo?</h1>
+          </div>
+          <div class="col s2">
+            <img (click)="compraRealizada(publicacion._id, usuario._id)" class="responsive-img" src="../assets/img/si.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="mapa" [ngClass]="{'margen-arriba': !ofertado}">
+        <agm-map [scrollwheel]="false" [latitude]="publicacion.entregaLat" [longitude]="publicacion.entregaLng" [zoom]="zoom">
+          <agm-marker [latitude]="publicacion.entregaLat" [longitude]="publicacion.entregaLng">
+            <agm-info-window [isOpen]="true">
+              <strong>Punto de entrega</strong>
+              <p class="punto-entrega">El vendedor entregara el producto en esta ubicación</p>
+              <p><img class="img-vendedor" src="{{url + 'obtener-img-usuario/' + publicacion.usuario.imagen}}" alt=""></p>
+            </agm-info-window>
+          </agm-marker>
+          <agm-marker [latitude]="latUsu" [longitude]="lngUsu"></agm-marker>
+          <agm-circle [latitude]="publicacion.entregaLat" [longitude]="publicacion.entregaLng"
+            [radius]="100"
+            [fillColor]="'blue'"
+            [circleDraggable]="false"
+            [editable]="false">
+          </agm-circle>
+				</agm-map>
+      </div>
+
+      <div class="confirmacion animated fadeIn fast">
+        <div class="row">
+          <div class="col s8 center-align">
+            <h3>Has ofertado por {{publicacion.titulo}}</h3>
+            <h5>Contactate con el vendedor para concretar la compra, aqui estan sus datos:</h5>
+            <h4>Telefono: {{publicacion.usuario.telefono}}</h4>
+            <h4>Email: {{publicacion.usuario.email}}</h4>
+          </div>
+          <div class="col s4">
+            <img class="responsive-img" src="../assets/img/money.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

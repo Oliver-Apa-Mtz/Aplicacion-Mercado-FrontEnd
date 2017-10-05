@@ -1,0 +1,90 @@
+/* You can add global styles to this file, and also import other style files */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 13px;
+}
+@font-face{
+    font-family: "Verbena";
+    src: url('./assets/fonts/Verbena.otf');
+}
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea{
+    border-color: #EEEEEE;
+}
+input:not([type]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]),
+input:not([type]).valid, input:not([type]):focus.valid, input[type=text]:not(.browser-default).valid, input[type=text]:not(.browser-default):focus.valid, input[type=password]:not(.browser-default).valid, input[type=password]:not(.browser-default):focus.valid, input[type=email]:not(.browser-default).valid, input[type=email]:not(.browser-default):focus.valid, input[type=url]:not(.browser-default).valid, input[type=url]:not(.browser-default):focus.valid, input[type=time]:not(.browser-default).valid, input[type=time]:not(.browser-default):focus.valid, input[type=date]:not(.browser-default).valid, input[type=date]:not(.browser-default):focus.valid, input[type=datetime]:not(.browser-default).valid, input[type=datetime]:not(.browser-default):focus.valid, input[type=datetime-local]:not(.browser-default).valid, input[type=datetime-local]:not(.browser-default):focus.valid, input[type=tel]:not(.browser-default).valid, input[type=tel]:not(.browser-default):focus.valid, input[type=number]:not(.browser-default).valid, input[type=number]:not(.browser-default):focus.valid, input[type=search]:not(.browser-default).valid, input[type=search]:not(.browser-default):focus.valid, textarea.materialize-textarea.valid, textarea.materialize-textarea:focus.valid{
+    border-bottom: 1px solid #263238;
+    box-shadow: 0px 1px 0px #263238;
+}
+.input-field input[type=search]:focus, .input-field input[type=search]:focus ~ .material-icons, .input-field input[type=search]:focus + label i{
+    color: #263238;
+    background-color: transparent;
+}
+.switch label input[type=checkbox]:checked + .lever{
+    background-color: #4e6470;
+}
+.switch label input[type=checkbox]:checked + .lever:after,
+.tabs.tabs-transparent .indicator{
+    background-color: #263238;
+}
+input,textarea{
+    color: #263238;
+}
+.botones{
+    border: 2px solid #263238;
+    background-color: white;
+    color: #263238;
+    height: 50px;
+    transition: all .2s;
+    position: relative;
+    transition: all .3s;
+}
+.botones:hover{
+    background-color: #263238;
+    color: white;
+}
+.botones::before{
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 2px;
+    background-color: #263238;
+    top: 24px;
+    right: -20px;
+}
+.botones i{
+    position: absolute;
+    transform: rotate(90deg);
+    color: #263238;
+    right: -37px;
+    margin-top: -2px;
+    font-size: 2em;
+}
+
+/*Animaciones*/
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}

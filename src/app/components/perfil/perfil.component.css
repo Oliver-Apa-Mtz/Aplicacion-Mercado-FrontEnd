@@ -1,0 +1,93 @@
+section{
+  position: relative;
+  width: 100vw;
+  height: auto;
+  min-height: 75vh;
+  margin-top: 13vh;
+  margin-bottom: 0;
+  background: linear-gradient(90deg, white 50%, #263238 50%);
+}
+h1{
+  position: absolute;
+  top: 10%;
+  font-size: 6em;
+  width: 40%;
+  text-align: left;
+  padding-left: 50px;
+}
+.fecha{
+  position: absolute;
+  bottom: 50px;
+  left: 100px;
+}
+.fecha::before{
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 3px;
+  background-color: #263238;
+  left: -100px;
+  top: 14px;
+}
+.correo{
+  position: absolute;
+  top: 10px;
+  width: 50%;
+  text-align: right;
+  padding-right: 100px;
+}
+.correo::after{
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 3px;
+  background-color: #263238;
+  top: 14px;
+}
+img{
+  position: absolute;
+  width: 25%;
+  left: 37.5%;
+  top: 15%;
+  height: auto;
+  border-radius: 5px;
+}
+ul{
+  position: absolute;
+  right: 50px;
+  top: 15%;
+  color: white;
+  font-size: 1.3em;
+  font-weight: lighter;
+  text-align: right;
+}
+li{
+  position: relative;
+  transition: all .3s;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+li:hover{
+  padding-right: 50px;
+}
+li::after{
+  position: absolute;
+  content: "";
+  right: -170px;
+  top: 15px;
+  width: 100px;
+  height: 1px;
+  background-color: white;
+  transition: all .3s;
+}
+li:hover::after{
+  right: -70px;
+}
+a{
+  position: absolute;
+  left: 48%;
+  bottom: 15px;
+}
+i{
+  font-size: 3em;
+}

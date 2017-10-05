@@ -1,0 +1,59 @@
+<section *ngIf="identity" class="contenedor-publicaciones">
+  <div *ngFor="let publicacion of publicaciones">
+    <div class="publicacion animated fadeIn fast" [ngClass]="{'completo': !propietario, 'con-lateral': propietario}">
+      <h2 class="blue-grey-text text-darken-4">{{publicacion.titulo}}</h2>
+      <div class="img-vendedor">
+        <p class="truncate nombre">{{publicacion.usuario.nombre}} {{publicacion.usuario.apellido}}</p>
+        <ul>
+          <li>
+            <h5>{{publicacion.usuario.ventas.length}}</h5>
+            <p>Ventas</p>
+          </li>
+          <li>
+            <h5>{{publicacion.usuario.compras.length}}</h5>
+            <p>Compras</p>
+          </li>
+        </ul>
+        <a [routerLink]="['/publicaciones/',publicacion.usuario._id]" class="blue-grey-text text-darken-4"><p class="public"><i class="material-icons">local_grocery_store</i>Publicaciones</p></a>
+        <img src="{{url + 'obtener-img-usuario/' + publicacion.usuario.imagen}}" alt="">
+      </div>
+      <div class="row">
+        <div class="col l6 back-white">
+          <h3 class="txt-categoria">{{publicacion.categoriaPrincipal}}</h3>
+          <h6 class="blue-grey-text text-darken-4 txt-estado">Articulo {{publicacion.estado}}</h6>
+          <h4 class="blue-grey-text text-darken-4 txt-precio">Precio<span>$ {{publicacion.precio}}</span></h4>
+          <h6 class="txt-descripcion blue-grey-text text-darken-4">{{publicacion.descripcion}}</h6>
+          <h5 class="blue-grey-text text-darken-4">{{publicacion.fechaRegistro | date:'dd MMMM y'}}</h5>
+        </div>
+        <div class="col l6 back-grey">
+          <figure class="contenedor-img" id="{{publicacion._id}}">
+            <img src="{{url + 'obtener-img-publi/' + publicacion.imgSec}}" alt="">
+            <img src="{{url + 'obtener-img-publi/' + publicacion.imgPri}}" alt="">
+            <img src="{{url + 'obtener-img-publi/' + publicacion.imgTer}}" alt="">
+          </figure>
+          <div class="puntos">
+            <p id="{{publicacion._id}}1" (click)="cambioImg(publicacion._id, '1')"><i></i></p>
+            <p id="{{publicacion._id}}2" (click)="cambioImg(publicacion._id, '2')"><i></i></p>
+            <p id="{{publicacion._id}}3" (click)="cambioImg(publicacion._id, '3')"><i></i></p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="propietario" class="opciones-publicacion">
+        <button [routerLink]="['/publicacion/',publicacion._id]" class="botones">Detalles<i class="material-icons">arrow_drop_up</i></button>
+        <button [routerLink]="['/actualizar-publicacion/',publicacion._id]" class="botones">Modificar<i class="material-icons">arrow_drop_up</i></button>
+        <button class="botones">Eliminar<i class="material-icons">arrow_drop_up</i></button>
+      </div>
+      <button *ngIf="!propietario" [routerLink]="['/publicacion/',publicacion._id]" class="botones">Detalles<i class="material-icons">arrow_drop_up</i></button>
+    </div>
+  </div>
+  <div *ngIf="vacio" class="vacio">
+    <div class="row">
+      <div class="col s6 valign-wrapper">
+        <h1 class="center-align">Aun no hay publicaciones, que esperar para genarar dinero vendiendo??</h1>
+      </div>
+      <div class="col s6">
+        <img class="responsive-img" src="../assets/img/cash.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
